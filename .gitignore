@@ -35,3 +35,6 @@ lerna-debug.log*
 
 # Test files
 *.spec.ts
+
+# Environment files
+*.env
