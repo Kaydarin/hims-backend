@@ -9,9 +9,10 @@ module.exports = {
         autoIncrement: true,
         allowNull: false
       },
-      name: {
+      action: {
         type: Sequelize.DataTypes.STRING(255),
-        allowNull: false
+        allowNull: false,
+        unique: true,
       },
       isDeleted: {
         type: Sequelize.DataTypes.BOOLEAN,
