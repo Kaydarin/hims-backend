@@ -2,12 +2,12 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
 
     const roles = await queryInterface.sequelize.query(
-      `SELECT id, name from roles`,
+      `SELECT id, name FROM roles ORDER BY id ASC`,
       { type: Sequelize.QueryTypes.SELECT }
     );
 
     const permissions = await queryInterface.sequelize.query(
-      `SELECT id, action from permissions`,
+      `SELECT id, action FROM permissions ORDER BY id ASC`,
       { type: Sequelize.QueryTypes.SELECT }
     );
 
@@ -19,10 +19,13 @@ module.exports = {
       }
     }
 
+    let datas = [];
+
     roles.forEach(obj => {
       switch (obj.name) {
         case 'Super Admin': {
-          queryInterface.bulkInsert('role_permissions', [
+
+          datas = datas.concat([
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:create'),
@@ -179,11 +182,11 @@ module.exports = {
               createdAt: new Date(),
               updatedAt: new Date()
             },
-          ]);
+          ])
           break;
         }
         case 'Admin': {
-          queryInterface.bulkInsert('role_permissions', [
+          datas = datas.concat([
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:create'),
@@ -340,11 +343,11 @@ module.exports = {
               createdAt: new Date(),
               updatedAt: new Date()
             },
-          ]);
+          ])
           break;
         }
         case 'Inventory Manager': {
-          queryInterface.bulkInsert('role_permissions', [
+          datas = datas.concat([
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:read-self'),
@@ -477,11 +480,11 @@ module.exports = {
               createdAt: new Date(),
               updatedAt: new Date()
             },
-          ]);
+          ])
           break;
         }
         case 'Inventory Clerk': {
-          queryInterface.bulkInsert('role_permissions', [
+          datas = datas.concat([
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:read-self'),
@@ -548,11 +551,11 @@ module.exports = {
               createdAt: new Date(),
               updatedAt: new Date()
             },
-          ]);
+          ])
           break;
         }
         case 'Inventory Operator': {
-          queryInterface.bulkInsert('role_permissions', [
+          datas = datas.concat([
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:read-self'),
@@ -601,11 +604,11 @@ module.exports = {
               createdAt: new Date(),
               updatedAt: new Date()
             },
-          ]);
+          ])
           break;
         }
         case 'Sales Executive': {
-          queryInterface.bulkInsert('role_permissions', [
+          datas = datas.concat([
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:read-self'),
@@ -624,11 +627,13 @@ module.exports = {
               createdAt: new Date(),
               updatedAt: new Date()
             },
-          ]);
+          ])
           break;
         }
       }
     });
+
+    return queryInterface.bulkInsert('role_permissions', datas)
   },
 
   down: async (queryInterface, Sequelize) => {
