@@ -9,16 +9,6 @@ module.exports = {
         autoIncrement: true,
         allowNull: false
       },
-      roleId: {
-        type: Sequelize.DataTypes.BIGINT,
-        references: {
-          model: {
-            tableName: 'roles'
-          },
-          key: 'id'
-        },
-        allowNull: false
-      },
       fullname: {
         type: Sequelize.DataTypes.STRING(255),
         allowNull: false
