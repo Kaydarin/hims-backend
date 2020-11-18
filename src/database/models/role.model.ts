@@ -1,12 +1,13 @@
-import { HasMany, BelongsToMany, PrimaryKey, AutoIncrement, Column, Unique, AllowNull, CreatedAt, Model, Table, UpdatedAt } from 'sequelize-typescript';
+import { BelongsToMany, PrimaryKey, AutoIncrement, Column, Unique, AllowNull, CreatedAt, Model, Table, UpdatedAt } from 'sequelize-typescript';
 import { User } from './user.model';
+import { UserRole } from './user-role.model';
 import { Permission } from './permission.model';
 import { RolePermission } from './role-permission.model';
 
 @Table({ tableName: 'roles' })
 export class Role extends Model {
 
-    @HasMany(() => User)
+    @BelongsToMany(() => User, () => UserRole)
     users: User[];
 
     @BelongsToMany(() => Permission, () => RolePermission)

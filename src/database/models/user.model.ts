@@ -1,18 +1,17 @@
-import { PrimaryKey, AutoIncrement, Column, ForeignKey, Unique, AllowNull, CreatedAt, Model, Table, UpdatedAt } from 'sequelize-typescript';
+import { BelongsToMany, PrimaryKey, AutoIncrement, Column, Unique, AllowNull, CreatedAt, Model, Table, UpdatedAt } from 'sequelize-typescript';
 import { Role } from './role.model';
+import { UserRole } from './user-role.model';
 
 @Table({ tableName: 'users' })
 export class User extends Model {
+
+    @BelongsToMany(() => Role, () => UserRole)
+    roles: Role[];
 
     @PrimaryKey
     @AutoIncrement
     @Column
     id: number;
-
-    @AllowNull(false)
-    @ForeignKey(() => Role)
-    @Column
-    roleId: number;
 
     @AllowNull(false)
     @Column
