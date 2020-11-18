@@ -27,6 +27,26 @@ module.exports = {
         defaultValue: false,
         allowNull: false,
       },
+      createdBy: {
+        type: Sequelize.DataTypes.BIGINT,
+        defaultValue: null,
+        references: {
+          model: {
+            tableName: 'users'
+          },
+          key: 'id'
+        }
+      },
+      updatedBy: {
+        type: Sequelize.DataTypes.BIGINT,
+        defaultValue: null,
+        references: {
+          model: {
+            tableName: 'users'
+          },
+          key: 'id'
+        }
+      },
       createdAt: {
         type: Sequelize.DataTypes.DATE,
         defaultValue: Sequelize.NOW,
