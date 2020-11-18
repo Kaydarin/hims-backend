@@ -1,13 +1,13 @@
-import { BelongsToMany, PrimaryKey, AutoIncrement, Column, ForeignKey, Unique, AllowNull, CreatedAt, Model, Table, UpdatedAt } from 'sequelize-typescript';
+import { PrimaryKey, AutoIncrement, Column, ForeignKey, Unique, AllowNull, CreatedAt, Model, Table, UpdatedAt, BelongsTo, BelongsToMany } from 'sequelize-typescript';
 import { Customer } from './customer.model';
 import { CustomerItem } from './customer-item.model';
 import { Product } from './product.model';
+import { User } from './user.model';
 
 @Table({ tableName: 'items' })
 export class Item extends Model {
 
-    @BelongsToMany(() => Customer, () => CustomerItem)
-    customers: Customer[];
+    // --------------- Columns --------------- //
 
     @PrimaryKey
     @AutoIncrement
@@ -32,6 +32,16 @@ export class Item extends Model {
     isDeleted: boolean;
 
     @AllowNull(false)
+    @ForeignKey(() => User)
+    @Column
+    createdBy: number;
+
+    @AllowNull(false)
+    @ForeignKey(() => User)
+    @Column
+    updatedBy: number;
+
+    @AllowNull(false)
     @CreatedAt
     @Column
     createdAt: Date;
@@ -40,4 +50,18 @@ export class Item extends Model {
     @UpdatedAt
     @Column
     updatedAt: Date;
+
+    // --------------- Relationships --------------- //
+
+    @BelongsTo(() => Product)
+    product: Product;
+
+    @BelongsToMany(() => Customer, () => CustomerItem)
+    customers: Customer[];
+
+    @BelongsTo(() => User, 'createdBy')
+    createdByUser: User;
+
+    @BelongsTo(() => User, 'updatedBy')
+    updatedByUser: User;
 }

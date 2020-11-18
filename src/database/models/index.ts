@@ -4,6 +4,9 @@ export * from './role.model';
 import { User } from './user.model';
 export * from './user.model';
 
+import { UserRole } from './user-role.model';
+export * from './user-role.model';
+
 import { Permission } from './permission.model';
 export * from './permission.model';
 
@@ -26,6 +29,7 @@ export * from './customer-item.model';
 let Models: Array<any> = [
     Role,
     User,
+    UserRole,
     Permission,
     RolePermission,
     Product,
