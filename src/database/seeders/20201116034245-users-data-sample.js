@@ -1,22 +1,8 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
 
-    const roles = await queryInterface.sequelize.query(
-      `SELECT id, name from roles`,
-      { type: Sequelize.QueryTypes.SELECT }
-    );
-
-    function findRoleIdByName(roleName) {
-      for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === roleName) {
-          return roles[i].id;
-        }
-      }
-    }
-
-    return await queryInterface.bulkInsert('users', [
+    return queryInterface.bulkInsert('users', [
       {
-        roleId: findRoleIdByName('Super Admin'),
         fullName: 'John Doe',
         username: 'johndoe',
         password: 'john123',
@@ -26,7 +12,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        roleId: findRoleIdByName('Admin'),
         fullName: 'Alexie Stukov',
         username: 'alexstu',
         password: 'alex123',
@@ -36,7 +21,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        roleId: findRoleIdByName('Inventory Manager'),
         fullName: 'Abu Bakr',
         username: 'abu',
         password: 'abu123',
@@ -46,7 +30,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        roleId: findRoleIdByName('Inventory Clerk'),
         fullName: 'Seng Hong',
         username: 'senghong',
         password: 'sh123',
@@ -56,7 +39,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        roleId: findRoleIdByName('Inventory Operator'),
         fullName: 'Uvuvwevwevwe Onyetenyevwe Ugwemubwem Ossas',
         username: 'ossas',
         password: 'ossas123',
@@ -66,7 +48,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        roleId: findRoleIdByName('Sales Executive'),
         fullName: 'Takiya Genji',
         username: 'takiya',
         password: 'takiya123',
@@ -74,11 +55,21 @@ module.exports = {
         phoneNo: '+60145556666',
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        fullName: 'Bruce Wayne',
+        username: 'bruce',
+        password: 'bruce123',
+        email: 'bruce@example.com',
+        phoneNo: '+60167778888',
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ]);
   },
 
   down: async (queryInterface, Sequelize) => {
+
     await queryInterface.sequelize.query(`SET FOREIGN_KEY_CHECKS = 0`);
 
     await queryInterface.bulkDelete('users', null, {

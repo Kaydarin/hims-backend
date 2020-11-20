@@ -1,6 +1,11 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
 
+    const users = await queryInterface.sequelize.query(
+      `SELECT id, username FROM users ORDER BY id ASC`,
+      { type: Sequelize.QueryTypes.SELECT }
+    );
+
     const roles = await queryInterface.sequelize.query(
       `SELECT id, name FROM roles ORDER BY id ASC`,
       { type: Sequelize.QueryTypes.SELECT }
@@ -19,6 +24,14 @@ module.exports = {
       }
     }
 
+    function findUserIdByUsername(username) {
+      for (let i = 0; i < users.length; i++) {
+        if (users[i].username === username) {
+          return users[i].id;
+        }
+      }
+    }
+
     let datas = [];
 
     roles.forEach(obj => {
@@ -29,156 +42,208 @@ module.exports = {
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:create'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:update-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:delete-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:create'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:update-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:update-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:delete-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:delete-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:create'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:update-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:update-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:delete-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:delete-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:create'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:update-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:update-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:delete-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:delete-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
@@ -190,156 +255,208 @@ module.exports = {
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:create'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:update-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:delete-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:create'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:update-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:update-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:delete-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:delete-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:create'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:update-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:update-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:delete-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:delete-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:create'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:update-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:update-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:delete-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:delete-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
@@ -351,132 +468,176 @@ module.exports = {
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:create'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:update-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:update-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:delete-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:delete-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:create'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:update-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:update-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:delete-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:delete-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:create'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:update-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:update-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:delete-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:delete-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
@@ -488,66 +649,88 @@ module.exports = {
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:create'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:update-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:delete-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:create'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:update-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:delete-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
@@ -559,48 +742,64 @@ module.exports = {
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:update-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:create'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:update-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('customer:delete-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
@@ -612,18 +811,24 @@ module.exports = {
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('role:read-self'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('product:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               roleId: obj.id,
               permissionId: findPermissionIdByAction('item:read-all'),
+              createdBy: findUserIdByUsername('johndoe'),
+              updatedBy: findUserIdByUsername('johndoe'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
