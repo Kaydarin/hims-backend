@@ -1,4 +1,4 @@
-import { PrimaryKey, AutoIncrement, Column, Unique, AllowNull, CreatedAt, Model, Table, UpdatedAt, HasMany, BelongsToMany, } from 'sequelize-typescript';
+import { PrimaryKey, AutoIncrement, Column, Unique, AllowNull, CreatedAt, Model, Table, UpdatedAt, HasMany, BelongsToMany } from 'sequelize-typescript';
 import { Role, UserRole, RolePermission, Permission, Product, Item, Customer, CustomerItem } from './index';
 
 @Table({ tableName: 'users' })
@@ -51,51 +51,51 @@ export class User extends Model {
     @BelongsToMany(() => Role, () => UserRole)
     roles: Role[];
 
-    @HasMany(() => Role, 'createdByUser')
+    @HasMany(() => Role, 'createdBy')
     createdRole: Role[];
 
-    @HasMany(() => Role, 'updatedByUser')
+    @HasMany(() => Role, 'updatedBy')
     updatedRole: Role[];
 
-    @HasMany(() => UserRole, 'createdByUser')
+    @HasMany(() => UserRole, 'createdBy')
     createdUserRole: UserRole[];
 
-    @HasMany(() => UserRole, 'updatedByUser')
+    @HasMany(() => UserRole, 'updatedBy')
     updatedUserRole: UserRole[];
 
-    @HasMany(() => RolePermission, 'createdByUser')
+    @HasMany(() => RolePermission, 'createdBy')
     createdRolePermission: RolePermission[];
 
-    @HasMany(() => RolePermission, 'updatedByUser')
+    @HasMany(() => RolePermission, 'updatedBy')
     updatedRolePermission: RolePermission[];
 
-    @HasMany(() => Permission, 'createdByUser')
+    @HasMany(() => Permission, 'createdBy')
     createdPermission: Permission[];
 
-    @HasMany(() => Permission, 'updatedByUser')
+    @HasMany(() => Permission, 'updatedBy')
     updatedPermission: Permission[];
 
-    @HasMany(() => Product, 'createdByUser')
+    @HasMany(() => Product, 'createdBy')
     createdProduct: Product[];
 
-    @HasMany(() => Product, 'updatedByUser')
+    @HasMany(() => Product, 'updatedBy')
     updatedProduct: Product[];
 
-    @HasMany(() => Item, 'createdByUser')
+    @HasMany(() => Item, 'createdBy')
     createdItem: Item[];
 
-    @HasMany(() => Item, 'updatedByUser')
+    @HasMany(() => Item, 'updatedBy')
     updatedItem: Item[];
 
-    @HasMany(() => Customer, 'createdByUser')
+    @HasMany(() => Customer, 'createdBy')
     createdCustomer: Customer[];
 
-    @HasMany(() => Customer, 'updatedByUser')
+    @HasMany(() => Customer, 'updatedBy')
     updatedCustomer: Customer[];
 
-    @HasMany(() => CustomerItem, 'createdByUser')
+    @HasMany(() => CustomerItem, 'createdBy')
     createdCustomerItem: CustomerItem[];
 
-    @HasMany(() => CustomerItem, 'updatedByUser')
+    @HasMany(() => CustomerItem, 'updatedBy')
     updatedCustomerItem: CustomerItem[];
 }
